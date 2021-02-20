@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
     public static event Action OnClick;
     public static event Action OnAfterAction;
 
-    [SerializeField] private int level = 1;
+    [SerializeField] private static int level = 1;
     [SerializeField] private FiguresManager figManager;
     [SerializeField] private GunManager gunManager;
+    
 
     private bool onAction = false;
 
@@ -46,6 +47,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static int GetCurrentLevel()
+    {
+        return level;
+    }
 
     void ChangeSwitches()
     {

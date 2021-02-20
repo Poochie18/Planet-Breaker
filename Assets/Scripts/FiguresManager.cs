@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class FiguresManager : MonoBehaviour
 {
-    [SerializeField] private Figures[] fig;
+    [SerializeField] private Figures[] ship;
     [SerializeField] private Bonus bonus;
-    [SerializeField] private float leftWall = -0.85f;
-    [SerializeField] private float rightWall = 0.85f;
-    [SerializeField] private float stepPlacing = 0.45f;
+    [SerializeField] private float stepPlacing = 0.7f;
+    [SerializeField] private float maxLeftPosition = -1f;
+    [SerializeField] private float maxRightPosition = 0.8f;
+    private int levelCoefficient = 4;
 
     private List<Figures> figuresList = new List<Figures>();
     private List<Bonus> bonusesList = new List<Bonus>();
@@ -20,15 +21,20 @@ public class FiguresManager : MonoBehaviour
 
     public void PlacingFigures(GunManager gunManager)
     {
-        for(float i = leftWall; i < rightWall; i += stepPlacing)
+        for(float i = maxLeftPosition; i < maxRightPosition; i += stepPlacing)
         {
             if(Random.Range(0, 2) == 1)
             {
-                int figureNumber = Random.Range(0, fig.Length);
+                int figureNumber = Random.Range(0, ship.Length);
                 Vector3 figurePosition = new Vector3(i, Random.Range(-1.4f, -1f), -2f);
-                figuresList.Add(Instantiate(fig[figureNumber], figurePosition, Quaternion.Euler(0, 0, 180)));
+                Figures newFig = Instantiate(ship[figureNumber], figurePosition, Quaternion.Euler(0, 0, 180));
+                int coefForMiltiple = (int)Mathf.Floor(GameManager.GetCurrentLevel() / levelCoefficient);
+                int hp = Random.Range(1 + coefForMiltiple * 5, 5 + coefForMiltiple * 5) ;
+                newFig.SetHelthPoints(hp);
+                figuresList.Add(newFig);
             }
         }
+
         /*
         Vector2 bonusPosition = new Vector2(Random.Range(-2f, 1.5f), -1f);
         var newBonus = Instantiate(bonus, bonusPosition, Quaternion.identity);
@@ -41,7 +47,7 @@ public class FiguresManager : MonoBehaviour
         for(int i = figuresList.Count - 1; i >= 0; i--)
         {
             var figura = figuresList[i];
-            if(figura.IsAlive)
+            if(!figura.IsAlive)
             {
                 figuresList.RemoveAt(i);
                 figura.DestroyFigure();

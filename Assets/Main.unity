@@ -924,7 +924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31fc9354f366b924c91b1ab1f2efdb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
   figManager: {fileID: 780015098}
   gunManager: {fileID: 709325716}
 --- !u!1 &745075421
@@ -1013,13 +1012,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7e0ee12efd8a334ba6cd02e06c12666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fig:
-  - {fileID: 8477081611372914789, guid: d4c045f28c366f6469c17828e0885246, type: 3}
-  - {fileID: 730673258519454602, guid: 26676e2932c5f94489a2db76dcab8c3d, type: 3}
+  ship:
+  - {fileID: -5832679334552291043, guid: d4c045f28c366f6469c17828e0885246, type: 3}
   bonus: {fileID: 7747483830969847564, guid: 1fccc031b42079547aec3e195662fc02, type: 3}
-  leftWall: -1.1
-  rightWall: 1.1
-  stepPlacing: 0.45
+  stepPlacing: 0.7
+  maxLeftPosition: -1
+  maxRightPosition: 0.8
 --- !u!4 &780015099
 Transform:
   m_ObjectHideFlags: 0
