@@ -9,6 +9,9 @@ TagManager:
   - Bottom
   - MainTrigger
   - Gun
+  - Figure
+  - LoseTrigger
+  - Bonus
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - 
   - Ball
-  - 
+  - Trigger
   - 
   - 
   - 

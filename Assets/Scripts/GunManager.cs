@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class GunManager : MonoBehaviour
     private Gun gun;
     private Vector3 mainPosition;
 
-    public int ball_count = 5;
+    public int ball_count;
 
     void Start()
     {
@@ -21,7 +22,6 @@ public class GunManager : MonoBehaviour
         gun = Instantiate(gunPrefab, mainPosition, Quaternion.identity);
         for(int i = 0; i < ball_count; i++)
         {
-            Debug.Log(i);
             Ball ball = Instantiate(ballPrefab, mainPosition, Quaternion.identity);
             AddToQueue(ball);
         }
@@ -30,12 +30,20 @@ public class GunManager : MonoBehaviour
 
     public bool CheckBallsCount() { return balls.Count == ball_count; } 
 
-    public void FreezRotation() { gun.rotation = !gun.rotation;}
+    public void FreezRotation() {gun.rotation = !gun.rotation;}
 
-    public void InstantiateBall()
+    public void InstantiateBall(Vector3 spawnPos)
     {
-        Ball ball = Instantiate(ballPrefab, mainPosition, Quaternion.identity);
-        AddToQueue(ball);
+
+        Ball ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
+        ball.Force(new Vector3(0.5f, 0.5f, 0f) * 1);
+        ball_count += 1;
+        
+    }
+
+    public void SetUpBall()
+    {
+
     }
 
     public void AddToQueue(Ball ball)

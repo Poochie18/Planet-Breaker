@@ -10,28 +10,22 @@ public class Ball : MonoBehaviour
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] private CircleCollider2D bx;
 
+    public GunManager gunManager;
+
+    private bool ballIsActive = false;
+
     void Start()
     {
         transform.localScale = new Vector3(1f, 1f, 1f) * BallSize;
     }
 
-    void Update()
-    {
-        //PushingUp();
+    public void SetVisibility(bool isVisible){
+        gameObject.SetActive(isVisible); 
     }
 
-    private void PushingUp()
-    {
-        if (rb.velocity == new Vector2(0f, 0f))
-        {
-            rb.AddForce((transform.up + new Vector3(0.5f, 0.5f, 0f)) * ballForce * 0.4f);
-        }
+    public void SetPosition(Vector3 gunPosition) { 
+        transform.position = gunPosition;
     }
-    public void SetVisibility(bool isVisible){ gameObject.SetActive(isVisible); }
-
-    public void SetPosition(Vector3 gunPosition) { transform.position = gunPosition; }
-
-    //private void Stoping() { rb.constraints = RigidbodyConstraints2D.FreezePosition; }
 
     public void Force(Vector3 position)
     {

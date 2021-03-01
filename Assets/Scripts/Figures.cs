@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Figures : MonoBehaviour
 {
     [SerializeField] private int figureHealth;
-    [SerializeField] private float figureSize = 0.07f;
+    [SerializeField] private float figureSize = 0.06f;
 
     [SerializeField] private SpriteRenderer sp2D;
 
     public bool IsAlive => figureHealth > 0;
+
+    Dictionary<int, Color> dict = new Dictionary<int, Color>
+    {
+        { 0, new Color(1f, 1f, 0f) },
+        { 1, new Color(0f, 1f, 0f) },
+        { 2, new Color(0f, 1f, 1f) },
+        { 3, new Color(0f, 0f, 1f) },
+        { 4, new Color(1f, 0f, 1f) },
+        { 5, new Color(1f, 0f, 0f) }
+    };
 
     void Start()
     {
@@ -18,10 +29,13 @@ public class Figures : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        GameManager.score += 1;
         figureHealth -= 1;
         if(figureHealth <= 0) gameObject.SetActive(false);
         SetColor();
+
     }
+
     public void DestroyFigure()
     {
         Destroy(gameObject);
@@ -35,29 +49,16 @@ public class Figures : MonoBehaviour
 
     public void SetColor()
     {
-        if (figureHealth >= 1 && figureHealth < 6)
+        int coef = Mathf.FloorToInt(figureHealth / 6);
+        try
         {
-            sp2D.color = new Color(1f, 1f, 0f);
+            sp2D.color = dict[coef];
         }
-        else if (figureHealth >= 6 && figureHealth < 11)
-        {
-            sp2D.color = new Color(0f, 1f, 0f);
-        }
-        else if (figureHealth >= 11 && figureHealth < 30)
-        {
-            sp2D.color = new Color(0f, 1f, 1f);
-        }
-        else if (figureHealth >= 30 && figureHealth < 60)
-        {
-            sp2D.color = new Color(0f, 0f, 1f);
-        }
-        else if (figureHealth >= 61 && figureHealth < 100)
-        {
-            sp2D.color = new Color(1f, 0f, 1f);
-        }
-        else
+        catch
         {
             sp2D.color = new Color(1f, 0f, 0f);
         }
+        
     }
+
 }

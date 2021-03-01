@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private float ballForce = 12f;
     [SerializeField] private float limitAngle = 90f;
 
     public bool rotation = true;
@@ -32,7 +31,6 @@ public class Gun : MonoBehaviour
    public void BallAddForce(Ball ball)
    {
        ball.Force(-transform.up);
-       //ball.rb.AddForce(-transform.up * ballForce);
    }
 
 }

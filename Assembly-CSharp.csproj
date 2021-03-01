@@ -66,11 +66,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\Bonus.cs" />
+    <Compile Include="Assets\Scripts\BonusFigure.cs" />
+    <Compile Include="Assets\Scripts\Death.cs" />
+    <Compile Include="Assets\Scripts\DeathTrigger.cs" />
     <Compile Include="Assets\Scripts\Figures.cs" />
     <Compile Include="Assets\Scripts\FiguresManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\GunManager.cs" />
+    <Compile Include="Assets\Scripts\RestartLevel.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>F:/Programs/Unity/2019.4.20f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
