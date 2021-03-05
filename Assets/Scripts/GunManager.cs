@@ -30,7 +30,7 @@ public class GunManager : MonoBehaviour
 
     public bool CheckBallsCount() { return balls.Count == ball_count; } 
 
-    public void FreezRotation() {gun.rotation = !gun.rotation;}
+    public void FreezRotation(bool setfreez) {gun.rotation = setfreez;}
 
     public void InstantiateBall(Vector3 spawnPos)
     {
@@ -39,11 +39,6 @@ public class GunManager : MonoBehaviour
         ball.Force(new Vector3(0.5f, 0.5f, 0f) * 1);
         ball_count += 1;
         
-    }
-
-    public void SetUpBall()
-    {
-
     }
 
     public void AddToQueue(Ball ball)

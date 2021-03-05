@@ -29,6 +29,8 @@ public class Figures : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        col.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(0, 1f)) * 15f);
+
         GameManager.score += 1;
         figureHealth -= 1;
         if(figureHealth <= 0) gameObject.SetActive(false);

@@ -12,8 +12,6 @@ public class Ball : MonoBehaviour
 
     public GunManager gunManager;
 
-    private bool ballIsActive = false;
-
     void Start()
     {
         transform.localScale = new Vector3(1f, 1f, 1f) * BallSize;

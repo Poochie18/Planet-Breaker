@@ -11,13 +11,14 @@ public class Gun : MonoBehaviour
     private Vector3 mousePosition;
     void Update()
     {
-        if (rotation)
+        if (!rotation)
             Rotation();
     }
 
     void Rotation()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mousePosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
 
         var angle = Vector2.Angle(Vector2.down, mousePosition - transform.position);
 

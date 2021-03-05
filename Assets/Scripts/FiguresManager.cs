@@ -47,7 +47,7 @@ public class FiguresManager : MonoBehaviour
 
                 figuresList.Add(newFig);
 
-            }else if(Random.Range(0, 6) == 1)
+            }else if(Random.Range(0, 5) == 1)
             {
                 var newBonus = Instantiate(bonus, position, Quaternion.Euler(0, 0, 180));
                 newBonus.SetGunManager(gunManager);
@@ -85,7 +85,6 @@ public class FiguresManager : MonoBehaviour
 
     public void MovingBonuses()
     {
-        Debug.Log(bonusesList.Count);
         for (int i = bonusesList.Count - 1; i >= 0; i--)
         {
             var bonus = bonusesList[i];
@@ -94,10 +93,12 @@ public class FiguresManager : MonoBehaviour
                 bonusesList.RemoveAt(i);
                 bonus.DestroyBonus();
             }
-            Vector2 bonusPosition = bonus.transform.position;
-            bonus.transform.position = new Vector2(bonusPosition.x, bonusPosition.y + 0.5f);
-
-            if (bonus.transform.position.y >= maxPosition) bonus.DestroyBonus();
+            else
+            {
+                Vector2 bonusPosition = bonus.transform.position;
+                bonus.transform.position = new Vector2(bonusPosition.x, bonusPosition.y + 0.5f);
+                if (bonus.transform.position.y >= maxPosition) bonus.DestroyBonus();
+            }
         }
     }
 

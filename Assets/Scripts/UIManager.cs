@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text ballsCountText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Button restartButton;
     [SerializeField] private GameObject scorePanel;
     [SerializeField] private GameObject losePanel;
 
 
+    public void SetBallsCountToScreen(int balls)
+    {
+        ballsCountText.text = balls.ToString();
+    }
 
     public void SetScoreText(int score)
     {

@@ -46,16 +46,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (!gameInPause) { Shooting(); }
-        uiManager.SetScoreText(score); 
+        uiManager.SetScoreText(score);
+        uiManager.SetBallsCountToScreen(gunManager.ball_count);
     }
 
     void Shooting()
     {
-
-        if (Input.GetMouseButtonDown(0) && !onAction)
+        //if (Input.GetTouch(0).phase == TouchPhase.Began && !onAction) { gunManager.FreezRotation(false); }
+        if (Input.GetMouseButtonDown(0) && !onAction) { gunManager.FreezRotation(false); }
+        //if(Input.GetTouch(0).phase == TouchPhase.Ended && !onAction)
+        if (Input.GetMouseButtonUp(0) && !onAction)
         {
             level += 1;
             OnClick();
+            gunManager.FreezRotation(true);
         }
         else if (gunManager.CheckBallsCount() && onAction)
         {
@@ -75,13 +79,12 @@ public class GameManager : MonoBehaviour
     void ChangeSwitches()
     {
         onAction = !onAction;
-        gunManager.FreezRotation();
     }
 
     void GameIsOver()
     {
         uiManager.SetUIPanelActive(true);
-        gunManager.FreezRotation();
+        gunManager.FreezRotation(false);
         gameInPause = true;
         figManager.DestroyAllFigures();
     }
