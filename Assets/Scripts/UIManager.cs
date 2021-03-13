@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text ballsCountText;
     [SerializeField] private Text bestScoreText;
+    [SerializeField] private Text bestBallsCount;
     [SerializeField] private Button restartButton;
     [SerializeField] private GameObject scorePanel;
     [SerializeField] private GameObject losePanel;
@@ -29,5 +30,6 @@ public class UIManager : MonoBehaviour
         scorePanel.SetActive(!check);
         losePanel.SetActive(check);
         bestScoreText.text = scoreText.text;
+        bestBallsCount.text = ballsCountText.text;
     }
 }

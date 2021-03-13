@@ -4,14 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Bonus
   - Ball
   - Elevator
-  - Bottom
-  - MainTrigger
-  - Gun
-  - Figure
-  - LoseTrigger
-  - Bonus
   layers:
   - Default
   - TransparentFX
@@ -22,7 +17,7 @@ TagManager:
   - 
   - 
   - Ball
-  - Trigger
+  - 
   - 
   - 
   - 

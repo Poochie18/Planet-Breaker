@@ -24,18 +24,16 @@ public class Figures : MonoBehaviour
 
     void Start()
     {
-        transform.localScale = new Vector3(1f, 1f, 1f) * figureSize;
+        transform.localScale = new Vector2(1f, 1f) * figureSize;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        col.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(0, 1f)) * 15f);
-
         GameManager.score += 1;
         figureHealth -= 1;
-        if(figureHealth <= 0) gameObject.SetActive(false);
+        if (figureHealth <= 0) gameObject.SetActive(false);
         SetColor();
-
+        col.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(0, 1f), Random.Range(-1f, 1f)) * 20f);
     }
 
     public void DestroyFigure()

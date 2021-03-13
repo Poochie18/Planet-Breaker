@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FiguresManager : MonoBehaviour
 {
-    [SerializeField] private Figures[] ship;
+    [SerializeField] private Figures[] planets;
     [SerializeField] private Bonus bonus;
 
     [SerializeField] private GunManager gunManager;
@@ -12,6 +12,7 @@ public class FiguresManager : MonoBehaviour
     [SerializeField] private float stepPlacing = 0.7f;
     [SerializeField] private float maxLeftPosition = -1f;
     [SerializeField] private float maxRightPosition = 0.8f;
+    [SerializeField] private float minDownPosition = -3f;
     [SerializeField] private float moveScale = 0.5f;
     
     private float maxPosition;
@@ -35,12 +36,12 @@ public class FiguresManager : MonoBehaviour
     {
         for(float i = maxLeftPosition; i < maxRightPosition; i += stepPlacing)
         {
-            Vector2 position = new Vector2(i, Random.Range(-1.4f, -1.2f));
+            Vector2 position = new Vector2(i, Random.Range(minDownPosition - 0.1f, minDownPosition + 0.1f));
             if (Random.Range(0, 2) == 1)
             {
-                int figureNumber = Random.Range(0, ship.Length);
+                int figureNumber = Random.Range(0, planets.Length);
                 
-                Figures newFig = Instantiate(ship[figureNumber], position, Quaternion.Euler(0, 0, 180));
+                Figures newFig = Instantiate(planets[figureNumber], position, Quaternion.Euler(0, 0, 180));
 
                 int hp = CountingHelthPoints();
                 newFig.SetHelthPoints(hp);
@@ -97,7 +98,7 @@ public class FiguresManager : MonoBehaviour
             {
                 Vector2 bonusPosition = bonus.transform.position;
                 bonus.transform.position = new Vector2(bonusPosition.x, bonusPosition.y + 0.5f);
-                if (bonus.transform.position.y >= maxPosition) bonus.DestroyBonus();
+                //if (bonus.transform.position.y > maxPosition+0.5) bonus.DestroyBonus();
             }
         }
     }
@@ -110,6 +111,7 @@ public class FiguresManager : MonoBehaviour
 
         foreach (Bonus bonus in bonusesList)
             bonus.DestroyBonus();
+            
         bonusesList.Clear();
     }
 

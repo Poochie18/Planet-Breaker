@@ -5,10 +5,16 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] private float limitAngle = 90f;
+    [SerializeField] private float gunSize;
 
     public bool rotation = true;
 
     private Vector3 mousePosition;
+
+    private void Start()
+    {
+        transform.localScale = new Vector2(1f, 1f) * gunSize;
+    }
     void Update()
     {
         if (!rotation)
@@ -17,9 +23,8 @@ public class Gun : MonoBehaviour
 
     void Rotation()
     {
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         //mousePosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var angle = Vector2.Angle(Vector2.down, mousePosition - transform.position);
 
         var realAngle = Mathf.Clamp(angle, -limitAngle, limitAngle); 

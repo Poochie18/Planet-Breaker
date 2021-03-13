@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static event Action OnStartGame;
 
     [SerializeField] private static int level;
-    [SerializeField] private float loseDistance;
+    [SerializeField] private GameObject loseTrigger;
 
     [SerializeField] private bool gameInPause = false;
     [SerializeField] private FiguresManager figManager;
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+
         level = 1;
         gunManager.ball_count = 1;
         for (int j = 0; j <= 1; j++)
@@ -45,16 +46,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (!gameInPause) { Shooting(); }
         uiManager.SetScoreText(score);
         uiManager.SetBallsCountToScreen(gunManager.ball_count);
+        if (!gameInPause) { Shooting(); }
     }
 
     void Shooting()
     {
         //if (Input.GetTouch(0).phase == TouchPhase.Began && !onAction) { gunManager.FreezRotation(false); }
         if (Input.GetMouseButtonDown(0) && !onAction) { gunManager.FreezRotation(false); }
-        //if(Input.GetTouch(0).phase == TouchPhase.Ended && !onAction)
+
+        //if (Input.GetTouch(0).phase == TouchPhase.Ended && !onAction)
         if (Input.GetMouseButtonUp(0) && !onAction)
         {
             level += 1;
@@ -65,10 +67,10 @@ public class GameManager : MonoBehaviour
         {
             OnAfterAction();
             figManager.PlacingFigures();
-            if (figManager.GetMaxtPosition() >= loseDistance)
+            if (figManager.GetMaxtPosition() >= loseTrigger.transform.position.y)
                 GameIsOver();
         }
-        
+
     }
 
     public static int GetCurrentLevel()
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
     void GameIsOver()
     {
         uiManager.SetUIPanelActive(true);
-        gunManager.FreezRotation(false);
+        gunManager.FreezRotation(true);
         gameInPause = true;
         figManager.DestroyAllFigures();
     }

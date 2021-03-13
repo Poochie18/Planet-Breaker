@@ -10,7 +10,7 @@ public class GunManager : MonoBehaviour
 
     private Queue<Ball> balls = new Queue<Ball>();
     private Gun gun;
-    private Vector3 mainPosition;
+    private Vector2 mainPosition;
 
     public int ball_count;
 
@@ -32,11 +32,11 @@ public class GunManager : MonoBehaviour
 
     public void FreezRotation(bool setfreez) {gun.rotation = setfreez;}
 
-    public void InstantiateBall(Vector3 spawnPos)
+    public void InstantiateBall(Vector2 spawnPos)
     {
 
         Ball ball = Instantiate(ballPrefab, spawnPos, Quaternion.identity);
-        ball.Force(new Vector3(0.5f, 0.5f, 0f) * 1);
+        ball.Force(new Vector2(0.5f, 0.5f) * 1);
         ball_count += 1;
         
     }

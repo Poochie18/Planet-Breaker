@@ -15,7 +15,7 @@ public class Bonus : MonoBehaviour
 
     void Start()
     {
-        transform.localScale = new Vector3(1f, 1f, 1f) * bonusSize;
+        transform.localScale = new Vector2(1f, 1f) * bonusSize;
         SetColor();
     }
 
