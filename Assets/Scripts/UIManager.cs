@@ -10,7 +10,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text ballsCountText;
     [SerializeField] private Text bestScoreText;
     [SerializeField] private Text bestBallsCount;
+
     [SerializeField] private Button restartButton;
+
     [SerializeField] private GameObject scorePanel;
     [SerializeField] private GameObject losePanel;
 
